@@ -21,6 +21,7 @@
         <java.version>17</java.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <springdoc.version>2.5.0</springdoc.version>
+        <spring.liquid.version>1.6.1</spring.liquid.version>
     </properties>
 
     <dependencies>
@@ -45,15 +46,16 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-liquibase</artifactId>
+            <groupId>net.lbruun.springboot</groupId>
+            <artifactId>preliquibase-spring-boot-starter</artifactId>
+            <version>${spring.liquid.version}</version>
         </dependency>
 
         <!-- Lombok + MapStruct -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -61,7 +63,7 @@
             <version>${mapstruct.version}</version>
         </dependency>
 
-        <!-- Swagger UI (opcional) -->
+        <!-- Swagger UI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -78,7 +80,6 @@
 
     <build>
         <plugins>
-            <!-- Necesario para MapStruct + Lombok -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -100,7 +101,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin de Spring Boot (ya lo tenías) -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

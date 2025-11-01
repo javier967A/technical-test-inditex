@@ -1,3 +1,17 @@
+server:
+  port: 8080
+
 spring:
-  application:
-    name: technicaltest
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate.ddl-auto: none
+    show-sql: true
+  h2.console.enabled: true
+  sql.init.mode: never
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    contexts: dev
