@@ -8,7 +8,39 @@ La información se almacena en una **base de datos H2 en memoria** inicializada 
 > **Regla de negocio clave:** si existen varias tarifas que aplican en el mismo instante, se selecciona la de **mayor `PRIORITY`** (valor numérico más alto).
 
 ---
+## Tecnologías y arquitectura
 
+- **Java**: 17
+- **Framework**: Spring Boot (Web, Data JPA, Validation)
+- **BD**: H2 en memoria con inicialización vía `data.sql`
+- **Documentación**: Springdoc OpenAPI / Swagger UI
+- **Patrones**: **Arquitectura Hexagonal (DDD)** + **Vertical Slicing** por _feature_
+
+### Estructura (Hexagonal + Vertical Slice)
+
+```
+com.inditex.technicaltest
+└─ features
+   └─ prices
+      ├─ domain                    # Entidades de dominio, excepciones, puertos (in/out)
+      ├─ application               # Casos de uso / servicios (lógica de aplicación)
+      └─ infrastructure
+         ├─ web                    # Controladores REST, DTOs, mappers API
+         └─ persistence            # Entities JPA, repos JPA, adapters, mappers
+```
+
+- **Hexagonal (DDD)**: el dominio es independiente; infraestructura implementa los **puertos** del dominio/aplicación.
+- **Vertical Slicing**: cada _feature_ vive en su propio slice (`features/<feature>`). Aquí: `prices`.
+
+### Decisiones de diseño
+
+- Inyección por **constructor**
+- **Puertos** y **adaptadores** para desacoplar dominio/infraestructura
+- **DTOs** separados del **modelo de dominio**
+- Reglas de negocio encapsuladas en **application/domain**
+- Tests **unitarios**, **integración** y **sistema**
+
+---
 ## Contexto y datos de ejemplo
 
 En la base de datos de comercio electrónico existe la tabla **PRICES** que refleja el precio final (PVP) y la tarifa que aplica a un producto de una cadena entre unas fechas determinadas.
