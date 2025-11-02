@@ -21,8 +21,7 @@
         <java.version>17</java.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <lombok.version>1.18.30</lombok.version>
-        <springdoc.version>2.5.0</springdoc.version>
-        <spring.liquid.version>1.6.1</spring.liquid.version>
+        <springdoc.version>2.8.0</springdoc.version>
     </properties>
 
     <dependencies>
@@ -60,7 +59,7 @@
             <version>${mapstruct.version}</version>
         </dependency>
 
-        <!-- Swagger UI -->
+        <!-- OpenAPI/Swagger -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

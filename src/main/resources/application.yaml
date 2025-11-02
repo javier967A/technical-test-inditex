@@ -22,9 +22,14 @@ server:
 logging:
   level:
     org.springframework: DEBUG
+    org.springdoc: DEBUG     # 👈 para ver por qué rompe la generación
 
 springdoc:
   api-docs:
+    enabled: true            # 👈 explícito
     path: /v3/api-docs
   swagger-ui:
+    enabled: true            # 👈 explícito
     path: /swagger-ui.html
+  use-fqn: true              # 👈 evita choques de nombres (muy común)
+  # remove-broken-reference-definitions: true  # opcional: ignora refs rotas
