@@ -28,10 +28,4 @@ public class PriceController {
         var price = useCase.getPrice(productId, brandId, applicationDate);
         return ResponseEntity.ok(mapper.toResponse(price));
     }
-
-    @PostMapping
-    public ResponseEntity<PriceResponse> getPrice(@RequestBody PriceRequest req) {
-        var price = useCase.getPrice(req.getProductId(), req.getBrandId(), req.getApplicationDate());
-        return ResponseEntity.ok(mapper.toResponse(price));
-    }
 }
